@@ -4,11 +4,11 @@ import tempfile
 import gzip
 
 def Start():
-    archive_path = input("Введите путь к архиву: ")
-    output_directory = input("Введите директорию для распаковки файлов: ")
+    archive_path = input("Enter archive path: ")
+    output_directory = input("Enter result path: ")
     if not os.path.exists(output_directory):
         os.makedirs(output_directory)
-    # Декомпрессия RLE-архива во временный файл
+
     with tempfile.NamedTemporaryFile(delete=False) as temp_decompressed_file:
         decompress_gzip(archive_path, temp_decompressed_file.name)
         temp_decompressed_file_path = temp_decompressed_file.name
@@ -26,9 +26,9 @@ def Start():
             except EOFError:
                 break
             except Exception as e:
-                print(f"Произошла ошибка: {e}")
+                print(f"Error: {e}")
                 break
-    # Удаление временного файла
+
     os.remove(temp_decompressed_file_path)
 
 def decompress_gzip(input_file, output_file):
