@@ -6,7 +6,7 @@ def Start():
     directory_path = input("Enter directory path: ")
 
     if not os.path.isdir(directory_path):
-        print("Указанный путь не является директорией или не существует.")
+        print("Invalid path.")
         return
 
     with open('result.ble', 'wb') as archive:
@@ -25,7 +25,7 @@ def Start():
                         }
                         pickle.dump(fileStruct, archive)
                 except Exception as e:
-                    print(f"Ошибка при обработке файла {file_path}: {e}")
+                    print(f"Error on file proccesing {file_path}: {e}")
     compress_gzip('result.ble', 'result.blezip')
 
 def compress_gzip(input_file, output_file):
